@@ -9,6 +9,10 @@ from singlet.lens import SingleScopeLens, IconViewCategory, ListViewCategory
 
 from duckduckgo_lens import duckduckgo_lensconfig
 
+import urllib2, json
+
+from urlparse import urlparse
+
 class DuckduckgoLens(SingleScopeLens):
 
 	class Meta:
@@ -21,8 +25,8 @@ class DuckduckgoLens(SingleScopeLens):
 
 	# TODO: Add your categories
 	related_topics = ListViewCategory("Related Topics", 'dialog-information-symbolic')	
-	results_category = ListViewCategory("Related Searches", 'dialog-information-symbolic')
-	related_searches = ListViewCategory("Results", 'dialog-information-symbolic')
+	related_searches = ListViewCategory("Related Searches", 'dialog-information-symbolic')
+	results_category = ListViewCategory("Results", 'dialog-information-symbolic')
 
 	ddg_url = "http://api.duckduckgo.com/"
 
@@ -46,7 +50,7 @@ class DuckduckgoLens(SingleScopeLens):
 			results.append(
 				search_results["Redirect"],
 				'applications-webbrowsers',
-				self.related_searches,
+				self.results_category,
 				"text/html",
 				"Search " + host + " for:",
 				search,
@@ -59,17 +63,17 @@ class DuckduckgoLens(SingleScopeLens):
 				if related["Text"] == 'Category Category':
 					results.append(
 						related['FirstURL'],
-						'/usr/share/unity/lenses/duckduckgo/duckduckgo.svg',
-						self.results_category,
+						'/usr/local/share/unity/lenses/duckduckgo/duckduckgo.svg',
+						self.related_searches,
 						"text/html",
-						search,
+						search.title(),
 						"Category",
 						related['FirstURL'])
 				else:
 					results.append(
 						related['FirstURL'],
-						 '/usr/share/unity/lenses/duckduckgo/duckduckgo.svg',
-						 self.results_category,
+						'/usr/local/share/unity/lenses/duckduckgo/duckduckgo.svg',
+						 self.related_searches,
 						 "text/html",
 						 "Search for:",
 						 related["Text"],
@@ -79,7 +83,7 @@ class DuckduckgoLens(SingleScopeLens):
 				for result in related["Topics"]:
 					results.append(
 						result['FirstURL'],
-						'/usr/share/unity/lenses/duckduckgo/duckduckgo.svg',
+						'/usr/local/share/unity/lenses/duckduckgo/duckduckgo.svg',
 						self.related_topics,
 						"text/html",
 						name,
@@ -91,7 +95,7 @@ class DuckduckgoLens(SingleScopeLens):
 			results.append(
 				search_results["AbstractURL"],
 				'applications-webbrowsers',
-				self.related_searches,
+				self.results_category,
 				"text/html",
 				search_results["AbstractSource"],
 				search_results["AbstractText"],
@@ -102,7 +106,7 @@ class DuckduckgoLens(SingleScopeLens):
 			results.append(
 				search_results["DefinitionURL"],
 				'applications-webbrowsers',
-				self.related_searches,
+				self.results_category,
 				"text/html",
 				search_results["DefinitionSource"],
 				search_results["Definition"],
@@ -113,7 +117,7 @@ class DuckduckgoLens(SingleScopeLens):
 		for result in search_results['Results']:
 			results.append(result['FirstURL'],
 						 'applications-webbrowsers',
-						 self.related_searches,
+						 self.results_category,
 						 "text/html",
 						 result['Text'],
 						 search_results['AbstractText'],
