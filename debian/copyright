@@ -1,0 +1,10 @@
+Format-Specification: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=135
+Name: duckduckgo-lens
+Maintainer: Wolf <w.vollprecht@googlemail.com>
+Source: https://launchpad.net/unity-lens-duckduckgo
+
+Files: *
+Copyright: (C) 2012 <Wolf Vollprecht> <w.vollprecht@googlemail.com>
+License: GPL-3
+ The full text of the GPL is distributed in
+ /usr/share/common-licenses/GPL-3 on Debian systems.

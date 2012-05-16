@@ -1,3 +1,4 @@
 project = duckduckgo-lens
 version = 12.04
 template = unity-lens
+lp_id = unity-lens-duckduckgo
