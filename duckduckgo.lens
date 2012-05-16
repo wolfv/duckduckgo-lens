@@ -1,0 +1,11 @@
+[Lens]
+DBusName=unity.singlet.lens.duckduckgo
+DBusPath=/unity/singlet/lens/duckduckgo
+Name=Duckduckgo
+Icon=/usr/share/unity/lenses/duckduckgo/unity-lens-duckduckgo.svg
+Description=Duckduckgo Lens
+SearchHint=Search Duckduckgo
+#Shortcut=c
+
+[Desktop Entry]
+X-Ubuntu-Gettext-Domain=duckduckgo-lens
